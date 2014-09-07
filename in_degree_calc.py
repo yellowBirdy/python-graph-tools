@@ -83,7 +83,12 @@ def in_degree_distribution(digraph):
 ###code for normalization of degree distribution
 
 def in_degree_distibution_normalized(digraph):
-    
+    """
+    Calculates a normalized (ie. to relative frequecies) in_degree distribution of a digraph.
+    by normalizing result of a call unnormalized degree distribtuion function.
+    Takes a digraph defined as an adjacency list. 
+    Returns a dictionary with relative frequecies of all degrees found in the input digraph
+    """
     degree_distribution = in_degree_distribution(digraph)
     #calculate total count
     total_edges = 0.0
