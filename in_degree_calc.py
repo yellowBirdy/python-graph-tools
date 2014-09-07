@@ -5,8 +5,11 @@ This is mini project for Module 1 of Algorithmic Thinking
 course on Coursera from Rice Uni. 
 The script calculates in-degree as well as in- degree dist
 for digraphs represented by adjacency lists. It uses 3 test
-digraphs and also introduces a funciton to generate a full graph
+digraphs and also introduces a function to generate a full graph
+
+Added a function normalizing in_degree, and fixed in_degree calculating algorithm
 """
+
 
 
 EX_GRAPH0 = {0:set([1,2]),
@@ -51,15 +54,15 @@ def make_complete_graph(num_nodes) :
 def compute_in_degrees(digraph):
     """ computes in degrees of each node of diagraph
     returns a dictionary with indegrees of each node """
+    #initialize the in_degree
     in_degrees = {}
-    for in_vert in digraph.keys():
-        count = 0
-        for out_vert in digraph.keys():
-            #checks if node of interest in_vert is present in the adjacency list 
-            #of all out_nodes but the in_vert itself, counts occurances
-            if out_vert != in_vert and in_vert in digraph[out_vert]:
-                count = count + 1
-        in_degrees[in_vert] = count
+    for vert in digraph.keys():
+        in_degrees[vert] = 0 
+        
+    for vert in digraph.keys():
+        for in_vert in digraph[vert]:
+            in_degrees[in_vert] += 1
+               
     return in_degrees
 
 
@@ -76,4 +79,25 @@ def in_degree_distribution(digraph):
     
     return in_degree_dist
 
-#print in_degree_distribution(EX_GRAPH2)
+
+###code for normalization of degree distribution
+
+def in_degree_distibution_normalized(digraph):
+    
+    degree_distribution = in_degree_distribution(digraph)
+    #calculate total count
+    total_edges = 0.0
+    for degree in degree_distribution.keys():
+        total_edges += degree_distribution[degree]
+    #normalize
+    normalized_distribution = {}
+    for degree in degree_distribution.keys():
+        normalized_distribution[degree] = degree_distribution[degree]/total_edges
+    
+    return normalized_distribution
+
+
+#####test
+#print in_degree_distribution(EX_GRAPH1)
+
+#print in_degree_distibution_normalized(EX_GRAPH1)
