@@ -105,4 +105,4 @@ def in_degree_distibution_normalized(digraph):
 #####test
 #print in_degree_distribution(EX_GRAPH1)
 
-#print in_degree_distibution_normalized(EX_GRAPH1)
+print in_degree_distibution_normalized(EX_GRAPH1)
