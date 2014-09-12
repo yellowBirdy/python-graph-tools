@@ -8,8 +8,10 @@ for digraphs represented by adjacency lists. It uses 3 test
 digraphs and also introduces a function to generate a full graph
 
 Added a function normalizing in_degree, and fixed in_degree calculating algorithm
+Added a function prining the normalized in_degree distibution in log scale
 """
-
+#imports
+import matplotlib.pyplot as plt
 
 
 EX_GRAPH0 = {0:set([1,2]),
@@ -82,7 +84,7 @@ def in_degree_distribution(digraph):
 
 ###code for normalization of degree distribution
 
-def in_degree_distibution_normalized(digraph):
+def in_degree_distribution_normalized(digraph):
     """
     Calculates a normalized (ie. to relative frequecies) in_degree distribution of a digraph.
     by normalizing result of a call unnormalized degree distribtuion function.
@@ -101,8 +103,23 @@ def in_degree_distibution_normalized(digraph):
     
     return normalized_distribution
 
+###code for printing the graph
+
+def plot_indegree_distribution(in_degree_distribution):
+    """
+    plots a normalized empirical in_degree distribution in log scale(would plot any degree disto if lables and title changed)
+    """
+    plt.figure()
+    plt.plot(in_degree_distribution.values(),in_degree_distribution.keys(),'ro')
+    plt.xlabel ('Indegree of nodes (log)')
+    plt.ylabel ('Relative frequency of Indegree (log)')
+    plt.title ('Normlized Indegree Distibution in log/log scale')
+    plt.grid(True)
+    plt.yscale('log')
+    plt.xscale('log')
+    plt.show()
 
 #####test
 #print in_degree_distribution(EX_GRAPH1)
 
-print in_degree_distibution_normalized(EX_GRAPH1)
+#plot_indegree_distribution (in_degree_distribution_normalized(EX_GRAPH2))
